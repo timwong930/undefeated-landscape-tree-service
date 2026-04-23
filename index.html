@@ -77,18 +77,12 @@
       backdrop-filter: blur(18px) saturate(170%);
       background: rgba(4, 8, 15, 0.86);
       border-bottom: 1px solid rgba(255,255,255,.10);
+      transform: translateY(0);
+      transition: transform .28s ease, opacity .28s ease, padding .28s ease, background .28s ease;
+      will-change: transform;
     }
-    .nav-strip {
-      border-bottom: 1px solid rgba(255,255,255,.07);
-      background: rgba(255,255,255,.03);
-      color: var(--muted);
-      font-size: .8rem;
-    }
-    .nav-strip-inner {
-      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
-      padding: .5rem 0;
-      flex-wrap: wrap;
-    }
+    .nav.is-condensed { background: rgba(4, 8, 15, 0.94); }
+    .nav.is-hidden { transform: translateY(-110%); }
     .nav-inner {
       display: grid;
       grid-template-columns: auto 1fr auto;
@@ -388,8 +382,7 @@
     @media (max-width: 640px) {
       .container { width: min(calc(100% - 1.1rem), var(--max)); }
       .section { padding: 3rem 0; }
-      .nav-strip-inner, .nav-inner { gap: .75rem; }
-      .nav-strip-inner { justify-content: center; text-align: center; }
+      .nav-inner { gap: .75rem; }
       .nav-inner { padding: .75rem 0 .9rem; }
       .brand { width: 100%; }
       .brand strong { white-space: normal; }
@@ -422,18 +415,11 @@
       .contact-row { padding: .9rem; }
       .footer-inner { flex-direction: column; }
       .footer-links { gap: .6rem; }
-      .nav-strip-inner { gap: .5rem; }
     }
   </style>
 </head>
 <body>
   <header class="nav">
-    <div class="nav-strip">
-      <div class="container nav-strip-inner">
-        <span>15 faves • free estimates • open 7 days a week</span>
-        <a href="tel:19498929940">Call or text: (949) 892-9940</a>
-      </div>
-    </div>
     <div class="container nav-inner">
       <a class="brand" href="#top">
         <img src="logo.jpg" alt="Undefeated Landscape & Tree Service logo" />
@@ -672,5 +658,40 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    (() => {
+      const nav = document.querySelector('.nav');
+      if (!nav) return;
+
+      let lastY = window.scrollY;
+      let ticking = false;
+
+      const update = () => {
+        const y = window.scrollY;
+        const delta = y - lastY;
+
+        nav.classList.toggle('is-condensed', y > 24);
+
+        if (y <= 12) {
+          nav.classList.remove('is-hidden');
+        } else if (delta > 6 && y > 80) {
+          nav.classList.add('is-hidden');
+        } else if (delta < -4) {
+          nav.classList.remove('is-hidden');
+        }
+
+        lastY = y;
+        ticking = false;
+      };
+
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(update);
+          ticking = true;
+        }
+      }, { passive: true });
+    })();
+  </script>
 </body>
 </html>
