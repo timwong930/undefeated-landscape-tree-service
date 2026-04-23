@@ -463,6 +463,27 @@
     }
     .footer-links { display: flex; gap: 1rem; flex-wrap: wrap; }
     .footer-links a { color: #f0f0ed; }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .sr-only:focus,
+    .sr-only:focus-visible {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 0;
+      overflow: visible;
+      clip: auto;
+      white-space: normal;
+    }
     @media (max-width: 980px) {
       .nav-inner, .hero-grid, .section-head, .proof-grid, .contact-grid { grid-template-columns: 1fr; }
       .nav-links { justify-content: flex-start; }
@@ -734,19 +755,19 @@
       <div class="container contact-grid">
         <article class="card contact-card">
           <div class="eyebrow section-kicker">Contact</div>
-          <h2>Ready when the yard needs help.</h2>
-          <p class="topline">If you want a one-time cleanup or recurring service, the public page makes it easy: phone number, seven-day availability, and free estimates.</p>
+          <h2>Call for landscape maintenance and tree service.</h2>
+          <p class="topline">We provide landscape maintenance, tree trimming, irrigation repair, clean-ups, sod installation, fertilizing, mulching, hauling, and new landscape installs in Menifee, Orange County, and nearby Inland Empire communities. Call or text for a free estimate.</p>
           <div class="cta-row">
-            <a class="btn btn-primary" href="tel:19498929940">(949) 892-9940</a>
-            <a class="btn btn-secondary" href="sms:19498929940">Text the number</a>
+            <a class="btn btn-primary" href="tel:19498929940">Call for a free estimate</a>
+            <a class="btn btn-secondary" href="sms:19498929940">Text for service</a>
           </div>
         </article>
         <article class="card contact-card">
           <div class="eyebrow section-kicker">Service area</div>
           <div class="contact-list">
-            <div class="contact-row"><strong>Menifee</strong><span>Home base on the public listing.</span></div>
-            <div class="contact-row"><strong>Orange County</strong><span>Serving all of Orange County.</span></div>
-            <div class="contact-row"><strong>Nearby Inland Empire communities</strong><span>Reach out to check availability.</span></div>
+            <div class="contact-row"><strong>Menifee</strong><span>Local home base for landscape and tree service.</span></div>
+            <div class="contact-row"><strong>Orange County</strong><span>Serving homeowners and businesses across Orange County.</span></div>
+            <div class="contact-row"><strong>Nearby Inland Empire communities</strong><span>Call to check availability in your area.</span></div>
           </div>
         </article>
       </div>
@@ -758,7 +779,7 @@
       <p>Undefeated Landscape & Tree Service — public-information landing page built from the company’s public Nextdoor presence.</p>
       <div class="footer-links">
         <a href="#top">Back to top</a>
-        <a href="AI-CONTEXT.md">AI context file</a>
+        <a class="sr-only" href="AI-CONTEXT.md">AI context file</a>
       </div>
     </div>
   </footer>
