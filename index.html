@@ -49,6 +49,8 @@
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
+      position: relative;
+      isolation: isolate;
       margin: 0;
       color: var(--text);
       font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
@@ -58,6 +60,92 @@
         radial-gradient(circle at 88% 0%, rgba(255,255,255,.05), transparent 16%),
         linear-gradient(180deg, #050505 0%, #0a0a0a 100%);
       overflow-x: hidden;
+    }
+    .motion-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .motion-grid,
+    .motion-sheen,
+    .motion-orb,
+    .motion-dust {
+      position: absolute;
+      inset: 0;
+    }
+    .motion-grid {
+      inset: -18%;
+      background-image:
+        linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+      background-size: 84px 84px;
+      transform: perspective(1000px) rotateX(70deg) translateY(12%);
+      transform-origin: center;
+      opacity: .18;
+      mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,.45) 22%, rgba(0,0,0,.95) 50%, rgba(0,0,0,.55) 78%, transparent 100%);
+      animation: grid-drift 24s linear infinite;
+      will-change: transform, background-position;
+    }
+    .motion-sheen {
+      background:
+        radial-gradient(circle at var(--pointer-x, 50%) var(--pointer-y, 18%), rgba(255,255,255,.12), transparent 18%),
+        linear-gradient(115deg, transparent 0%, rgba(255,255,255,.06) 48%, transparent 58%);
+      opacity: .35;
+      mix-blend-mode: screen;
+      transform: translate3d(calc(var(--scroll-progress, 0) * 18px), calc(var(--scroll-progress, 0) * -26px), 0) rotate(-8deg);
+      transition: transform .12s linear;
+    }
+    .motion-orb {
+      border-radius: 999px;
+      filter: blur(22px);
+      mix-blend-mode: screen;
+      opacity: .55;
+      background: radial-gradient(circle at 32% 32%, rgba(255,255,255,.95), rgba(255,255,255,.16) 30%, transparent 72%);
+      animation: orb-float 18s ease-in-out infinite alternate;
+      will-change: transform;
+    }
+    .orb-a {
+      width: 34rem; height: 34rem; left: -10rem; top: -8rem;
+      transform: translate3d(calc(var(--scroll-progress, 0) * 36px), calc(var(--scroll-progress, 0) * 20px), 0);
+    }
+    .orb-b {
+      width: 24rem; height: 24rem; right: -8rem; top: 18rem;
+      animation-duration: 22s;
+      animation-delay: -7s;
+      opacity: .32;
+      transform: translate3d(calc(var(--scroll-progress, 0) * -26px), calc(var(--scroll-progress, 0) * 30px), 0);
+    }
+    .orb-c {
+      width: 28rem; height: 28rem; left: 40%; bottom: -10rem;
+      animation-duration: 26s;
+      animation-delay: -12s;
+      opacity: .26;
+      transform: translate3d(calc(var(--scroll-progress, 0) * 18px), calc(var(--scroll-progress, 0) * -28px), 0);
+    }
+    .motion-dust {
+      opacity: .38;
+      background-image:
+        radial-gradient(circle at 10% 20%, rgba(255,255,255,.18) 0 1px, transparent 1.5px),
+        radial-gradient(circle at 32% 72%, rgba(255,255,255,.1) 0 1px, transparent 1.5px),
+        radial-gradient(circle at 68% 26%, rgba(255,255,255,.12) 0 1px, transparent 1.5px),
+        radial-gradient(circle at 86% 64%, rgba(255,255,255,.08) 0 1px, transparent 1.5px);
+      background-size: 420px 420px;
+      animation: dust-drift 28s linear infinite;
+      mix-blend-mode: screen;
+    }
+    @keyframes grid-drift {
+      from { background-position: 0 0; }
+      to { background-position: 84px 84px; }
+    }
+    @keyframes orb-float {
+      from { transform: translate3d(0, 0, 0) scale(1); }
+      to { transform: translate3d(0, -22px, 0) scale(1.04); }
+    }
+    @keyframes dust-drift {
+      from { transform: translate3d(0, 0, 0); }
+      to { transform: translate3d(-60px, 40px, 0); }
     }
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
@@ -418,10 +506,23 @@
       .contact-row { padding: .9rem; }
       .footer-inner { flex-direction: column; }
       .footer-links { gap: .6rem; }
+      .motion-grid { opacity: .1; background-size: 112px 112px; }
+      .motion-orb { filter: blur(28px); opacity: .24; }
+      .orb-a { width: 22rem; height: 22rem; left: -8rem; top: -6rem; }
+      .orb-b { width: 16rem; height: 16rem; right: -5rem; top: 14rem; }
+      .orb-c { width: 18rem; height: 18rem; left: 34%; bottom: -6rem; }
     }
   </style>
 </head>
 <body>
+  <div class="motion-bg" aria-hidden="true">
+    <div class="motion-grid"></div>
+    <div class="motion-sheen"></div>
+    <div class="motion-dust"></div>
+    <div class="motion-orb orb-a"></div>
+    <div class="motion-orb orb-b"></div>
+    <div class="motion-orb orb-c"></div>
+  </div>
   <header class="nav">
     <div class="container nav-inner">
       <a class="brand" href="#top">
@@ -694,6 +795,46 @@
           ticking = true;
         }
       }, { passive: true });
+    })();
+
+    (() => {
+      const root = document.documentElement;
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced) return;
+
+      let target = 0;
+      let current = 0;
+      let ticking = false;
+      let px = 50;
+      let py = 18;
+
+      const setVars = () => {
+        const scrollMax = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        target = Math.min(1, Math.max(0, window.scrollY / scrollMax));
+        current += (target - current) * 0.08;
+        root.style.setProperty('--scroll-progress', current.toFixed(4));
+        root.style.setProperty('--scroll-y', `${window.scrollY}px`);
+        root.style.setProperty('--pointer-x', `${px}%`);
+        root.style.setProperty('--pointer-y', `${py}%`);
+        ticking = false;
+      };
+
+      const onScroll = () => {
+        if (!ticking) {
+          requestAnimationFrame(setVars);
+          ticking = true;
+        }
+      };
+
+      const onMove = (e) => {
+        px = (e.clientX / window.innerWidth) * 100;
+        py = (e.clientY / window.innerHeight) * 100;
+        onScroll();
+      };
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('mousemove', onMove, { passive: true });
+      setVars();
     })();
   </script>
 </body>
