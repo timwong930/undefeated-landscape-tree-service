@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark only" />
+  <title>Undefeated Landscape & Tree Service | Menifee, Orange County & Nearby Areas</title>
+  <meta name="description" content="Undefeated Landscape & Tree Service provides lawn maintenance, tree trimming, irrigation repairs, clean-ups, sod installation, planting, fertilizing, hauling, and ongoing yard care." />
+  <meta name="keywords" content="landscape contractor, tree service, irrigation repair, lawn maintenance, clean-ups, sod installation, planting, fertilizing, Orange County, Menifee" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Undefeated Landscape & Tree Service" />
+  <meta property="og:description" content="Local landscape and tree care across Menifee, Orange County, and nearby Inland Empire communities." />
+  <meta property="og:image" content="hero.jpg" />
+  <meta name="theme-color" content="#0b1220" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #07111d;
+      --bg2: #0c1727;
+      --card: rgba(10, 18, 31, 0.82);
+      --line: rgba(255,255,255,0.10);
+      --text: #f5f9ff;
+      --muted: #bfd0e4;
+      --accent: #3ea3ff;
+      --accent2: #2f7be8;
+      --shadow: 0 24px 70px rgba(0,0,0,0.4);
+      --radius: 22px;
+      --max: 1160px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(62,163,255,.18), transparent 24%),
+        radial-gradient(circle at 90% 0%, rgba(90,220,178,.08), transparent 20%),
+        linear-gradient(180deg, #050b13 0%, #09111d 100%);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    .container { width: min(calc(100% - 2rem), var(--max)); margin: 0 auto; }
+    .section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
+    .chip, .eyebrow {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .45rem .85rem; border-radius: 999px;
+      border: 1px solid var(--line); background: rgba(255,255,255,.04);
+      color: #eaf4ff; font-size: .78rem; letter-spacing: .16em; text-transform: uppercase;
+    }
+    .nav {
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: blur(16px) saturate(180%);
+      background: rgba(5, 11, 19, 0.82);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      padding: .9rem 0;
+    }
+    .brand { display: flex; align-items: center; gap: .85rem; }
+    .brand img { width: 2.8rem; height: 2.8rem; border-radius: .8rem; object-fit: cover; box-shadow: var(--shadow); }
+    .brand strong { display: block; letter-spacing: .14em; text-transform: uppercase; font-size: .86rem; }
+    .brand span { display: block; color: var(--muted); font-size: .78rem; }
+    .nav-links { display: flex; gap: 1rem; flex-wrap: wrap; color: var(--muted); font-size: .9rem; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+      min-height: 44px; padding: .75rem 1.05rem; border-radius: 14px; border: 1px solid transparent;
+      font-weight: 700; transition: transform .18s ease, border-color .18s ease, background .18s ease;
+      white-space: nowrap;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent2)); box-shadow: 0 14px 30px rgba(62,163,255,.22); }
+    .btn-secondary { background: rgba(255,255,255,.04); border-color: var(--line); }
+    .hero { padding: 2.5rem 0 1.5rem; }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 1.5rem; align-items: center; }
+    h1 {
+      margin: .8rem 0 0; font-family: Fraunces, serif; text-transform: uppercase;
+      font-size: clamp(2.7rem, 6vw, 5.2rem); line-height: .94; letter-spacing: -.06em;
+      max-width: 12ch;
+    }
+    .lead { color: var(--muted); font-size: clamp(1.02rem, 1vw + .8rem, 1.16rem); max-width: 42ch; }
+    .cta-row, .meta-row { display: flex; flex-wrap: wrap; gap: .75rem; }
+    .cta-row { margin-top: 1.4rem; }
+    .meta-row { margin-top: 1rem; color: var(--muted); }
+    .hero-card, .card {
+      background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .hero-card { padding: 1rem; }
+    .hero-card img { width: 100%; height: 520px; object-fit: cover; border-radius: calc(var(--radius) - 6px); }
+    .hero-card .caption { display: flex; justify-content: space-between; gap: 1rem; padding: .95rem .2rem .1rem; color: var(--muted); font-size: .9rem; }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 1.5rem; }
+    .stat { padding: 1rem; background: rgba(255,255,255,.03); border: 1px solid var(--line); border-radius: 16px; }
+    .stat strong { display: block; font-size: 1.4rem; }
+    .stat span { color: var(--muted); font-size: .88rem; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .section h2 { margin: 0; font-family: Fraunces, serif; font-size: clamp(2rem, 4vw, 3.3rem); line-height: 1; letter-spacing: -.04em; }
+    .section p.topline { margin: .9rem 0 0; color: var(--muted); max-width: 58ch; }
+    .services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.5rem; }
+    .service { padding: 1.2rem; background: rgba(255,255,255,.03); border: 1px solid var(--line); border-radius: 18px; }
+    .service h3 { margin: 0 0 .35rem; font-size: 1rem; }
+    .service p { margin: 0; color: var(--muted); font-size: .95rem; }
+    .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1.4rem; }
+    .gallery figure { margin: 0; }
+    .gallery img { width: 100%; height: 260px; object-fit: cover; border-radius: 18px; border: 1px solid var(--line); }
+    .gallery figcaption { color: var(--muted); font-size: .88rem; margin-top: .45rem; }
+    .contact-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 1rem; align-items: stretch; }
+    .contact-card { padding: 1.3rem; }
+    .contact-list { display: grid; gap: .8rem; margin-top: 1rem; }
+    .contact-item { padding: .95rem 1rem; border-radius: 14px; border: 1px solid var(--line); background: rgba(255,255,255,.03); }
+    footer { padding: 1.5rem 0 3rem; color: var(--muted); font-size: .9rem; }
+    @media (max-width: 900px) {
+      .hero-grid, .grid-2, .contact-grid { grid-template-columns: 1fr; }
+      .services, .gallery, .stats { grid-template-columns: 1fr 1fr; }
+      .hero-card img { height: 400px; }
+    }
+    @media (max-width: 640px) {
+      .nav-inner { flex-direction: column; align-items: flex-start; }
+      .services, .gallery, .stats { grid-template-columns: 1fr; }
+      .hero-card img { height: 300px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top">
+        <img src="logo.jpg" alt="Undefeated Landscape & Tree Service logo" />
+        <div>
+          <strong>Undefeated Landscape & Tree Service</strong>
+          <span>Menifee • Orange County • Nearby Inland Empire</span>
+        </div>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#services">Services</a>
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="btn btn-primary" href="tel:19498929940">Call (949) 892-9940</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">15 faves • 7 days a week • free estimates</div>
+          <h1>Landscape & tree care that keeps properties looking sharp.</h1>
+          <p class="lead">Undefeated Landscape & Tree Service helps homeowners and property owners with lawn maintenance, tree trimming, irrigation repairs, clean-ups, sod installation, planting, fertilizing, hauling, and ongoing yard care.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="tel:19498929940">Call / Text Now</a>
+            <a class="btn btn-secondary" href="#services">See Services</a>
+          </div>
+          <div class="meta-row">
+            <span class="chip">Reliable</span>
+            <span class="chip">Professional</span>
+            <span class="chip">Affordable</span>
+          </div>
+          <div class="stats">
+            <div class="stat"><strong>949</strong><span>local contact number</span></div>
+            <div class="stat"><strong>7</strong><span>days a week</span></div>
+            <div class="stat"><strong>Free</strong><span>estimates available</span></div>
+            <div class="stat"><strong>OC</strong><span>and nearby areas served</span></div>
+          </div>
+        </div>
+        <div class="hero-card">
+          <img src="hero.jpg" alt="Landscape project photo" />
+          <div class="caption">
+            <span>Serving Menifee, Orange County, and nearby communities.</span>
+            <span>Quality tree trimming & gardening services.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="section">
+      <div class="container">
+        <div class="grid-2">
+          <div>
+            <div class="eyebrow">What they do</div>
+            <h2>Full-service yard care with the details handled.</h2>
+          </div>
+          <p class="topline">The business page highlights detailed yard maintenance, tree service, irrigation, fertilizing, mulching, drip systems, sod installation, clean-ups, new landscapes, privacy hedges, hauling, and green waste removal.</p>
+        </div>
+        <div class="services">
+          <div class="service"><h3>Lawn Maintenance</h3><p>Mowing, edging, cleanup, and steady upkeep that keeps properties polished.</p></div>
+          <div class="service"><h3>Tree Trimming & Removal</h3><p>Shaping, pruning, and removal work to keep trees healthy and safe.</p></div>
+          <div class="service"><h3>Irrigation Repairs</h3><p>Drip systems, sprinkler checks, leak fixes, and water-wise adjustments.</p></div>
+          <div class="service"><h3>Clean-Ups & Hauling</h3><p>Seasonal clean-ups, debris removal, and green waste hauling.</p></div>
+          <div class="service"><h3>Sod Installation & Planting</h3><p>Fresh lawns, new plants, privacy hedges, and full landscape installs.</p></div>
+          <div class="service"><h3>Fertilizing & Mulching</h3><p>Support for healthier soil, stronger growth, and better curb appeal.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="work" class="section">
+      <div class="container">
+        <div class="grid-2">
+          <div>
+            <div class="eyebrow">Recent photo highlights</div>
+            <h2>Proof of the kind of work they’re showing publicly.</h2>
+          </div>
+          <p class="topline">These images come from the public business page and give a feel for the kind of landscape and tree care work customers can expect.</p>
+        </div>
+        <div class="gallery">
+          <figure><img src="gallery-1.jpg" alt="Landscape project photo 1"><figcaption>Landscape work example</figcaption></figure>
+          <figure><img src="gallery-2.jpg" alt="Landscape project photo 2"><figcaption>Landscape work example</figcaption></figure>
+          <figure><img src="gallery-3.jpg" alt="Landscape project photo 3"><figcaption>Landscape work example</figcaption></figure>
+          <figure><img src="gallery-4.jpg" alt="Landscape project photo 4"><figcaption>Landscape work example</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container contact-grid">
+        <div class="card contact-card">
+          <div class="eyebrow">Contact</div>
+          <h2>Ready when the yard needs help.</h2>
+          <p class="topline">If you need an estimate for ongoing service or a one-time cleanup, the public listing says they’re open seven days a week and accept calls or texts.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="tel:19498929940">(949) 892-9940</a>
+            <a class="btn btn-secondary" href="sms:19498929940">Text the number</a>
+          </div>
+        </div>
+        <div class="card contact-card">
+          <div class="eyebrow">Service area</div>
+          <div class="contact-list">
+            <div class="contact-item"><strong>Menifee</strong><br><span style="color: var(--muted)">Home base on the Nextdoor listing.</span></div>
+            <div class="contact-item"><strong>Orange County</strong><br><span style="color: var(--muted)">Serving all of Orange County.</span></div>
+            <div class="contact-item"><strong>Nearby Inland Empire communities</strong><br><span style="color: var(--muted)">Reach out to check availability.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>Undefeated Landscape & Tree Service — public-information landing page built from the company’s public Nextdoor presence.</p>
+    </div>
+  </footer>
+</body>
+</html>

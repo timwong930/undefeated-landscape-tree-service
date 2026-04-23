@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://github.com/timwong930/undefeated-landscape-tree-service/blob/main/sitemap.xml

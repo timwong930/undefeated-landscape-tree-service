@@ -1,0 +1,10 @@
+{
+  "name": "undefeated-landscape-tree-service",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Landing page for Undefeated Landscape & Tree Service",
+  "scripts": {
+    "start": "python3 -m http.server 4175",
+    "serve": "python3 -m http.server 4175"
+  }
+}
