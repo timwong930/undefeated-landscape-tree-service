@@ -85,3 +85,6 @@ The main conversion goal is to get a call or text for a free estimate.
 - Keep the content tied to public information
 - Preserve the luxury-clean visual direction
 - If you update service copy, make it more direct rather than more decorative
+
+## Outreach
+- See `outreach.md` for the initial contact notes.
